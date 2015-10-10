@@ -21,9 +21,15 @@
     <ClCompile Include="src\System\sdlWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\System\sdlInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\System\sdlWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\System\sdlInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

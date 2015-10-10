@@ -150,9 +150,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\System\sdlInput.cpp" />
     <ClCompile Include="src\System\sdlWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\System\sdlInput.h" />
     <ClInclude Include="src\System\sdlWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

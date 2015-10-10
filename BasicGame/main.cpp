@@ -307,20 +307,24 @@ int main(int argc, char* args[])
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
 			{
-				//User requests quit
-				if (e.type == SDL_QUIT)
+				switch (e.type)
 				{
+				case SDL_QUIT:
 					quit = true;
+					break;
+
+				case SDL_TEXTINPUT:
+						break;
+
+				default:
+					break;
 				}
-				//Handle keypress with current mouse position
-				else if (e.type == SDL_TEXTINPUT)
-				{
-					
-					//handleKeys(e.text.text[0], x, y);
-				}
+				
 				int x = 0, y = 0;
 				SDL_GetMouseState(&x, &y);
-				printf("%d , %d\n", x, y);
+				float a = (float)x/SCREEN_WIDTH * 2 - 1;
+				float b = 1 - (float)y/SCREEN_HEIGHT * 2;
+				printf("%f , %f\n", a, b);
 			}
 
 			//Render quad
