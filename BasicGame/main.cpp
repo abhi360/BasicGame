@@ -313,8 +313,15 @@ int main(int argc, char* args[])
 					quit = true;
 					break;
 
-				case SDL_TEXTINPUT:
+				case SDL_KEYDOWN:
+					if (e.key.keysym.sym == SDLK_a)
+						printf("a\n");
 						break;
+
+				case SDL_KEYUP:
+					if (e.key.keysym.sym == SDLK_d)
+						printf("d\n");
+					break;
 
 				default:
 					break;
