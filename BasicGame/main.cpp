@@ -1,7 +1,7 @@
 
 
 #include <sdlWindow.h>
-
+#include <Game.h>
 
 #if 0
 
@@ -282,6 +282,10 @@ void printShaderLog(GLuint shader)
 
 #endif
 
+
+Game Breakout(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+
 int main(int argc, char* args[])
 {
 	sdlWindow window;
@@ -298,47 +302,64 @@ int main(int argc, char* args[])
 		//Event handler
 		SDL_Event e;
 
-		//Enable text input
-		SDL_StartTextInput();
+		// Initialize game
+		Breakout.Init();
+
+		// DeltaTime variables
+		GLfloat deltaTime = 0.0f;
+		GLfloat lastFrame = 0.0f;
+
+		// Start Game within Menu State
+		Breakout.State = GAME_ACTIVE;
 
 		//While application is running
 		while (!quit)
 		{
+
+			// Calculate delta
+			GLfloat currentFrame = SDL_GetTicks();
+			deltaTime = currentFrame - lastFrame;
+			lastFrame = currentFrame;
+			//printf("%f\n", deltaTime);
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
 			{
-				switch (e.type)
-				{
-				case SDL_QUIT:
+				if (e.type == SDL_QUIT)
 					quit = true;
-					break;
 
-				case SDL_KEYDOWN:
-					if (e.key.keysym.sym == SDLK_a)
-						printf("a\n");
-						break;
+				window.HandleEvent(e);
 
-				case SDL_KEYUP:
-					if (e.key.keysym.sym == SDLK_d)
-						printf("d\n");
-					break;
-
-				default:
-					break;
-				}
+				Breakout.ProcessInput(deltaTime/1000,e);
 				
-				int x = 0, y = 0;
-				SDL_GetMouseState(&x, &y);
-				float a = (float)x/SCREEN_WIDTH * 2 - 1;
-				float b = 1 - (float)y/SCREEN_HEIGHT * 2;
-				printf("%f , %f\n", a, b);
 			}
+
+			int x = 0, y = 0;
+			SDL_GetMouseState(&x, &y);
+			float a = (float)x/window.GetWidth() * 2 - 1;
+			float b = 1 - (float)y/window.GetHeight() * 2;
+			//printf("%f , %f\n", a, b);
+
+			// Update the game state
+			
+
+			// Update Game state
+			Breakout.Update(deltaTime);
+
+
+
+
+
+			//Render
+			glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT);
+			Breakout.Render();
+			//Update screen
+			SDL_GL_SwapWindow(window.sdlwindow());
 
 			//Render quad
 			//render();
 
-			//Update screen
-			SDL_GL_SwapWindow(window.sdlwindow());
+			
 		}
 
 		//Disable text input

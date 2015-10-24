@@ -4,7 +4,13 @@
 
 sdlWindow::sdlWindow()
 {
-
+	mWindow = NULL;
+	mMouseFocus = false;
+	mKeyboardFocus = false;
+	mFullScreen = false;
+	mMinimized = false;
+	mWidth = 0;
+	mHeight = 0;
 }
 
 
@@ -13,11 +19,87 @@ sdlWindow::~sdlWindow()
 
 }
 
+
+void sdlWindow::HandleEvent(SDL_Event& e)
+{
+	//Window event occured
+	if (e.type == SDL_WINDOWEVENT)
+	{
+		//Caption update flag
+		bool updateCaption = false;
+
+		switch (e.window.event)
+		{
+				//Mouse entered window
+			case SDL_WINDOWEVENT_ENTER:
+				mMouseFocus = true;
+				updateCaption = true;
+				break;
+
+				//Mouse left window
+			case SDL_WINDOWEVENT_LEAVE:
+				mMouseFocus = false;
+				updateCaption = true;
+				break;
+
+				//Window has keyboard focus
+			case SDL_WINDOWEVENT_FOCUS_GAINED:
+				mKeyboardFocus = true;
+				updateCaption = true;
+				break;
+
+				//Window lost keyboard focus
+			case SDL_WINDOWEVENT_FOCUS_LOST:
+				mKeyboardFocus = false;
+				updateCaption = true;
+				break;
+
+				//Window minimized
+			case SDL_WINDOWEVENT_MINIMIZED:
+				mMinimized = true;
+				break;
+
+				//Window maxized
+			case SDL_WINDOWEVENT_MAXIMIZED:
+				mMinimized = false;
+				break;
+
+				//Window restored
+			case SDL_WINDOWEVENT_RESTORED:
+				mMinimized = false;
+				break;
+		}
+
+		//Update window caption with new data
+		if (updateCaption)
+		{
+			std::stringstream caption;
+			caption << "SDL - MouseFocus:" << ((mMouseFocus) ? "On" : "Off") << " KeyboardFocus:" << ((mKeyboardFocus) ? "On" : "Off");
+			SDL_SetWindowTitle(mWindow, caption.str().c_str());
+		}
+	}
+	//Enter exit full screen on return key
+	else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
+	{
+		if (mFullScreen)
+		{
+			SDL_SetWindowFullscreen(mWindow, SDL_FALSE);
+			mFullScreen = false;
+		}
+		else
+		{
+			SDL_SetWindowFullscreen(mWindow, SDL_TRUE);
+			mFullScreen = true;
+			mMinimized = false;
+		}
+	}
+}
+
 void sdlWindow::Close()
 {
 	//Destroy window	
-	SDL_DestroyWindow(gWindow);
-	gWindow = NULL;
+	SDL_DestroyWindow(mWindow);
+	mWindow = NULL;
 
 	//Quit SDL subsystems
 	SDL_Quit();
@@ -39,27 +121,58 @@ bool sdlWindow::Initialize()
 	{
 		//Use OpenGL 3.1 core
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
+		
+		/*SDL_DisplayMode mode = { SDL_PIXELFORMAT_UNKNOWN, 0, 0, 0, 0 };
+		int display_count = 0;
+		int display_index = 0;
+		int mode_index = 0;
+		if ((display_count = SDL_GetNumVideoDisplays()) > 0)
+		{
+			SDL_Log("SDL_GetNumVideoDisplays returned: %i", display_count);
+			display_index = display_count - 1;
+			int should_be_zero = SDL_GetDisplayMode(display_index,mode_index ,&mode);
+			mWidth = mode.w;
+			mHeight = mode.h;
+			SDL_Log("%d:,%d:", mWidth, mHeight);
+		}
+		else
+		{
+			mWidth = SCREEN_WIDTH;
+			mHeight = SCREEN_HEIGHT;
+		}*/
+
+		mWidth = SCREEN_WIDTH;
+		mHeight = SCREEN_HEIGHT;
+
 		//Create window
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
-		if (gWindow == NULL)
+		mWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, mWidth, mHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+		if (mWindow == NULL)
 		{
 			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
 			success = false;
 		}
 		else
 		{
+			
+			mMouseFocus = true;
+			mKeyboardFocus = true;
+			mWidth = SCREEN_WIDTH;
+			mHeight = SCREEN_HEIGHT;
+			glViewport(0, 0, mWidth, mHeight);
+			glEnable(GL_CULL_FACE);
 			//Create context
-			gContext = SDL_GL_CreateContext(gWindow);
-			if (gContext == NULL)
+			mContext = SDL_GL_CreateContext(mWindow);
+			if (mContext == NULL)
 			{
 				printf("OpenGL context could not be created! SDL Error: %s\n", SDL_GetError());
 				success = false;
 			}
 			else
 			{
+				SDL_Log("Here");
 				//Initialize GLEW
 				glewExperimental = GL_TRUE;
 				GLenum glewError = glewInit();
@@ -73,9 +186,40 @@ bool sdlWindow::Initialize()
 				{
 					printf("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 				}
+
+				
+				
+				glEnable(GL_BLEND);
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			}
 		}
 	}
 
 	return success;
+}
+
+
+int sdlWindow::GetWidth()
+{
+	return mWidth;
+}
+
+int sdlWindow::GetHeight()
+{
+	return mHeight;
+}
+
+bool sdlWindow::HasMouseFocus()
+{
+	return mMouseFocus;
+}
+
+bool sdlWindow::HasKeyboardFocus()
+{
+	return mKeyboardFocus;
+}
+
+bool sdlWindow::IsMinimized()
+{
+	return mMinimized;
 }
