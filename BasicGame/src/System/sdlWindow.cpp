@@ -172,7 +172,7 @@ bool sdlWindow::Initialize()
 			}
 			else
 			{
-				SDL_Log("Here");
+				//SDL_Log("Here");
 				//Initialize GLEW
 				glewExperimental = GL_TRUE;
 				GLenum glewError = glewInit();

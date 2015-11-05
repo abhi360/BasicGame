@@ -318,8 +318,9 @@ int main(int argc, char* args[])
 
 			// Calculate delta
 			GLfloat currentFrame = SDL_GetTicks();
-			deltaTime = currentFrame - lastFrame;
+			deltaTime = (currentFrame - lastFrame)/1000;
 			lastFrame = currentFrame;
+			
 			//printf("%f\n", deltaTime);
 			//Handle events on queue
 			while (SDL_PollEvent(&e) != 0)
@@ -328,8 +329,8 @@ int main(int argc, char* args[])
 					quit = true;
 
 				window.HandleEvent(e);
-
-				Breakout.ProcessInput(deltaTime/1000,e);
+				
+				Breakout.ProcessInput(deltaTime,e);
 				
 			}
 
