@@ -9,6 +9,7 @@
 #include <SpriteRenderer.h>
 #include <BallObject.h>
 #include <GameLevel.h>
+#include <ParticleGenerator.h>
 
 enum GameState
 {
@@ -40,6 +41,7 @@ class Game
 {
 private:
 	// Game-related State data
+	ParticleGenerator   *Particles;
 	SpriteRenderer  *Renderer;
 	GameObject *Player;
 	BallObject     *Ball;

@@ -45,6 +45,9 @@
     <ClCompile Include="src\System\BallObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graphics\ParticleGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\System\sdlWindow.h">
@@ -74,6 +77,9 @@
     <ClInclude Include="src\System\BallObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Graphics\ParticleGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Shader\shader_fragment.frag" />
@@ -82,5 +88,7 @@
     <None Include="src\Level\two.lvl" />
     <None Include="src\Level\three.lvl" />
     <None Include="src\Level\four.lvl" />
+    <None Include="src\Shader\particle.vert" />
+    <None Include="src\Shader\particle.frag" />
   </ItemGroup>
 </Project>
