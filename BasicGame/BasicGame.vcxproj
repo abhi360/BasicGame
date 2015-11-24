@@ -89,13 +89,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)SDL2-2.0.3\include;$(ProjectDir)glew-1.13.0\include;$(ProjectDir)src\System;$(ProjectDir)src\Game;$(ProjectDir);$(ProjectDir)src\Graphics;$(ProjectDir)SOIL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)SDL2-2.0.3\include;$(ProjectDir)glew-1.13.0\include;$(ProjectDir)src\System;$(ProjectDir)src\Game;$(ProjectDir);$(ProjectDir)src\Graphics;$(ProjectDir)SOIL\include;$(ProjectDir)irrklang\include;$(ProjectDir)Freetype\include;$(ProjectDir)Freetype\include\freetype2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)SDL2-2.0.3\lib\x86;$(ProjectDir)glew-1.13.0\lib\Release\Win32;$(ProjectDir)SOIL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32s.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)SDL2-2.0.3\lib\x86;$(ProjectDir)glew-1.13.0\lib\Release\Win32;$(ProjectDir)SOIL\lib;$(ProjectDir)irrklang\lib;$(ProjectDir)Freetype\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32s.lib;SOIL.lib;irrKlang.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -149,8 +149,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="src\Graphics\PostProcessor.cpp" />
     <ClCompile Include="src\Graphics\ParticleGenerator.cpp" />
-    <ClCompile Include="src\System\BallObject.cpp" />
+    <ClCompile Include="src\Game\BallObject.cpp" />
     <ClCompile Include="src\System\GameLevel.cpp" />
     <ClCompile Include="src\Game\GameObject.cpp" />
     <ClCompile Include="src\Graphics\SpriteRenderer.cpp" />
@@ -160,10 +162,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\System\sdlWindow.cpp" />
     <ClCompile Include="src\Graphics\Texture2D.cpp" />
+    <ClCompile Include="src\System\TextRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="src\Game\PowerUp.h" />
+    <ClInclude Include="src\Graphics\PostProcessor.h" />
     <ClInclude Include="src\Graphics\ParticleGenerator.h" />
-    <ClInclude Include="src\System\BallObject.h" />
+    <ClInclude Include="src\Game\BallObject.h" />
     <ClInclude Include="src\System\GameLevel.h" />
     <ClInclude Include="src\Game\GameObject.h" />
     <ClInclude Include="src\Graphics\SpriteRenderer.h" />
@@ -172,6 +178,7 @@
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\System\sdlWindow.h" />
     <ClInclude Include="src\Graphics\Texture2D.h" />
+    <ClInclude Include="src\System\TextRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Level\four.lvl" />
@@ -180,8 +187,12 @@
     <None Include="src\Level\two.lvl" />
     <None Include="src\Shader\particle.frag" />
     <None Include="src\Shader\particle.vert" />
+    <None Include="src\Shader\post_processing.frag" />
+    <None Include="src\Shader\post_processing.vs" />
     <None Include="src\Shader\shader_fragment.frag" />
     <None Include="src\Shader\shader_vertex.vert" />
+    <None Include="src\Shader\text.frag" />
+    <None Include="src\Shader\text.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

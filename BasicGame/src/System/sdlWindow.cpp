@@ -121,28 +121,8 @@ bool sdlWindow::Initialize()
 	{
 		//Use OpenGL 3.1 core
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-
-		
-		/*SDL_DisplayMode mode = { SDL_PIXELFORMAT_UNKNOWN, 0, 0, 0, 0 };
-		int display_count = 0;
-		int display_index = 0;
-		int mode_index = 0;
-		if ((display_count = SDL_GetNumVideoDisplays()) > 0)
-		{
-			SDL_Log("SDL_GetNumVideoDisplays returned: %i", display_count);
-			display_index = display_count - 1;
-			int should_be_zero = SDL_GetDisplayMode(display_index,mode_index ,&mode);
-			mWidth = mode.w;
-			mHeight = mode.h;
-			SDL_Log("%d:,%d:", mWidth, mHeight);
-		}
-		else
-		{
-			mWidth = SCREEN_WIDTH;
-			mHeight = SCREEN_HEIGHT;
-		}*/
 
 		mWidth = SCREEN_WIDTH;
 		mHeight = SCREEN_HEIGHT;
@@ -186,8 +166,6 @@ bool sdlWindow::Initialize()
 				{
 					printf("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 				}
-
-				
 				
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

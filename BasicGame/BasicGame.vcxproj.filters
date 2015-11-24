@@ -42,10 +42,19 @@
     <ClCompile Include="src\System\GameLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\System\BallObject.cpp">
+    <ClCompile Include="src\Graphics\ParticleGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graphics\ParticleGenerator.cpp">
+    <ClCompile Include="src\Graphics\PostProcessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\BallObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System\TextRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,10 +83,22 @@
     <ClInclude Include="src\System\GameLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\System\BallObject.h">
+    <ClInclude Include="src\Graphics\ParticleGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graphics\ParticleGenerator.h">
+    <ClInclude Include="src\Graphics\PostProcessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game\PowerUp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game\BallObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\System\TextRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -90,5 +111,9 @@
     <None Include="src\Level\four.lvl" />
     <None Include="src\Shader\particle.vert" />
     <None Include="src\Shader\particle.frag" />
+    <None Include="src\Shader\post_processing.vs" />
+    <None Include="src\Shader\post_processing.frag" />
+    <None Include="src\Shader\text.vs" />
+    <None Include="src\Shader\text.frag" />
   </ItemGroup>
 </Project>

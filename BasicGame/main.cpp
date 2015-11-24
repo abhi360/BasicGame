@@ -1,6 +1,7 @@
 
 
 #include <sdlWindow.h>
+#include <InputManager.h>
 #include <Game.h>
 
 #if 0
@@ -289,6 +290,7 @@ Game Breakout(SCREEN_WIDTH, SCREEN_HEIGHT);
 int main(int argc, char* args[])
 {
 	sdlWindow window;
+	InputManager inputManager;
 	//Start up SDL and create window
 	if (!window.Initialize())
 	{
@@ -310,7 +312,7 @@ int main(int argc, char* args[])
 		GLfloat lastFrame = 0.0f;
 
 		// Start Game within Menu State
-		Breakout.State = GAME_ACTIVE;
+		Breakout.State = GAME_MENU;
 
 		//While application is running
 		while (!quit)
@@ -318,7 +320,7 @@ int main(int argc, char* args[])
 
 			// Calculate delta
 			GLfloat currentFrame = SDL_GetTicks();
-			deltaTime = (currentFrame - lastFrame)/1000;
+			deltaTime = (currentFrame - lastFrame);
 			lastFrame = currentFrame;
 			
 			//printf("%f\n", deltaTime);
@@ -330,7 +332,15 @@ int main(int argc, char* args[])
 
 				window.HandleEvent(e);
 				
-				Breakout.ProcessInput(deltaTime,e);
+				if (e.type == SDL_KEYDOWN)
+					inputManager.preeskey(e.key.keysym.sym);
+
+				Breakout.ProcessInput(deltaTime/1000,e,inputManager);
+
+
+				if (e.type == SDL_KEYUP)
+					inputManager.releasekey(e.key.keysym.sym);
+
 				
 			}
 
