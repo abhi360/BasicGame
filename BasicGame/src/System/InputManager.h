@@ -8,7 +8,7 @@ public:
 	InputManager();
 	~InputManager();
 
-	void preeskey(unsigned int keyId);
+	void presskey(unsigned int keyId);
 	void releasekey(unsigned int keyId);
 
 	bool isKeyPressed(unsigned int keyId);

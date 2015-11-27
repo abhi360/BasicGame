@@ -11,7 +11,7 @@ InputManager::~InputManager()
 {
 }
 
-void InputManager::preeskey(unsigned int keyId)
+void InputManager::presskey(unsigned int keyId)
 {
 	keyMap[keyId] = true;
 }

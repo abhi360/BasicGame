@@ -333,7 +333,7 @@ int main(int argc, char* args[])
 				window.HandleEvent(e);
 				
 				if (e.type == SDL_KEYDOWN)
-					inputManager.preeskey(e.key.keysym.sym);
+					inputManager.presskey(e.key.keysym.sym);
 
 				Breakout.ProcessInput(deltaTime/1000,e,inputManager);
 
@@ -354,7 +354,7 @@ int main(int argc, char* args[])
 			
 
 			// Update Game state
-			Breakout.Update(deltaTime);
+			Breakout.Update(deltaTime/1000);
 
 
 

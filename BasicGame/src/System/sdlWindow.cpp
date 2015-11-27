@@ -22,7 +22,7 @@ sdlWindow::~sdlWindow()
 
 void sdlWindow::HandleEvent(SDL_Event& e)
 {
-	//Window event occured
+	//Window event occurred
 	if (e.type == SDL_WINDOWEVENT)
 	{
 		//Caption update flag
@@ -59,7 +59,7 @@ void sdlWindow::HandleEvent(SDL_Event& e)
 				mMinimized = true;
 				break;
 
-				//Window maxized
+				//Window maxi zed
 			case SDL_WINDOWEVENT_MAXIMIZED:
 				mMinimized = false;
 				break;
@@ -79,7 +79,7 @@ void sdlWindow::HandleEvent(SDL_Event& e)
 		}
 	}
 	//Enter exit full screen on return key
-	else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
+	else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_F10)
 	{
 		if (mFullScreen)
 		{

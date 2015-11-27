@@ -124,7 +124,7 @@ void Game::ProcessInput(GLfloat dt,SDL_Event& e,InputManager& input)
 	{
 		if (e.type == SDL_KEYDOWN)
 		{
-			if (e.key.keysym.sym == SDLK_KP_ENTER)
+			if (e.key.keysym.sym == SDLK_RETURN)
 				this->State = GAME_ACTIVE;
 
 			if (e.key.keysym.sym == SDLK_w)
@@ -144,7 +144,7 @@ void Game::ProcessInput(GLfloat dt,SDL_Event& e,InputManager& input)
 		if (e.type == SDL_KEYDOWN)
 		{
 
-			if (e.key.keysym.sym == SDLK_KP_ENTER)
+			if (e.key.keysym.sym == SDLK_RETURN)
 			{
 				Effects->Chaos = GL_FALSE;
 				this->State = GAME_MENU;
@@ -156,8 +156,8 @@ void Game::ProcessInput(GLfloat dt,SDL_Event& e,InputManager& input)
 
 	if (this->State == GAME_ACTIVE)
 	{
-		GLfloat ds = PLAYER_VELOCITY * dt;
-		// Move playerboard
+		GLfloat ds = PLAYER_VELOCITY * dt; 
+		// Move player board
 		
 		if (input.isKeyPressed(SDLK_a))
 		{
