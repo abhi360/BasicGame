@@ -149,7 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="src\System\InputManager.cpp" />
     <ClCompile Include="src\Graphics\PostProcessor.cpp" />
     <ClCompile Include="src\Graphics\ParticleGenerator.cpp" />
     <ClCompile Include="src\Game\BallObject.cpp" />
@@ -165,7 +165,7 @@
     <ClCompile Include="src\System\TextRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="src\System\InputManager.h" />
     <ClInclude Include="src\Game\PowerUp.h" />
     <ClInclude Include="src\Graphics\PostProcessor.h" />
     <ClInclude Include="src\Graphics\ParticleGenerator.h" />

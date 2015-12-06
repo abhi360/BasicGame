@@ -182,7 +182,9 @@ void Game::ProcessInput(GLfloat dt,SDL_Event& e,InputManager& input)
 		if(e.type == SDL_KEYDOWN)
 			if (e.key.keysym.sym == SDLK_SPACE)
 				Ball->Stuck = GL_FALSE;
-		
+
+		if (e.type == SDL_KEYUP)
+			ds = 0;
 	}
 }
 

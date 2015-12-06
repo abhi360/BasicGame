@@ -1,0 +1,36 @@
+﻿Build started 07-12-2015 00:03:35.
+     1>Project "E:\UnityProjectsDir\BasicGame\BasicGame\BasicGame.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         E:\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt src\System\InputManager.cpp src\Graphics\PostProcessor.cpp src\Graphics\ParticleGenerator.cpp src\Game\BallObject.cpp src\System\GameLevel.cpp src\Game\GameObject.cpp src\Graphics\SpriteRenderer.cpp src\System\ResourceManager.cpp src\Graphics\Shader.cpp src\Game\Game.cpp main.cpp src\System\sdlWindow.cpp src\Graphics\Texture2D.cpp src\System\TextRenderer.cpp
+         InputManager.cpp
+         PostProcessor.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\graphics\PostProcessor.h(3): fatal error C1083: Cannot open include file: 'Shader.h': No such file or directory
+         ParticleGenerator.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\graphics\ParticleGenerator.h(3): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+         BallObject.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\game\GameObject.h(3): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+         GameLevel.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\system\GameLevel.h(5): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+         GameObject.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\game\GameObject.h(3): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+         SpriteRenderer.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\graphics\SpriteRenderer.h(2): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+         ResourceManager.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\system\ResourceManager.h(6): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+         Shader.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\graphics\Shader.h(5): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+         Game.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\game\Game.h(7): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+         main.cpp
+     1>main.cpp(1): fatal error C1083: Cannot open include file: 'sdlWindow.h': No such file or directory
+         sdlWindow.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\system\sdlWindow.h(3): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+         Texture2D.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\graphics\Texture2D.h(2): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+         TextRenderer.cpp
+     1>e:\unityprojectsdir\basicgame\basicgame\src\system\TextRenderer.h(6): fatal error C1083: Cannot open include file: 'glm/gtc/matrix_transform.hpp': No such file or directory
+     1>Done Building Project "E:\UnityProjectsDir\BasicGame\BasicGame\BasicGame.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:02.85
